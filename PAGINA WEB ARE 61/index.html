@@ -40,7 +40,7 @@ body {
 }
 @media (max-width: 900px) { body { cursor: auto; } .cursor-dot, .cursor-ring { display:none; } }
 
-/* ===== FONDO ANIMADO CON LUCES ===== */
+/* ===== FONDO ANIMADO ===== */
 body::before {
   content:"";
   position:fixed;
@@ -79,7 +79,6 @@ header {
   100% { background-position: 0% 50%; }
 }
 
-/* Grid neón de fondo */
 header::before {
   content:"";
   position:absolute;
@@ -96,7 +95,6 @@ header::before {
   100% { background-position: 50px 50px; }
 }
 
-/* Ondas */
 .onda {
   position:absolute;
   bottom:-10px;
@@ -114,7 +112,6 @@ header::before {
   50%     { transform: translateX(0%) scaleY(1.4); }
 }
 
-/* Partículas flotantes */
 .particulas { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
 .particulas span {
   position:absolute;
@@ -141,7 +138,6 @@ header::before {
 .particulas span:nth-child(9){ left:85%; width:5px; height:5px; animation-duration:12s; }
 .particulas span:nth-child(10){ left:95%; width:13px; height:13px; animation-duration:20s; }
 
-/* Título */
 header h1 {
   font-size: 5rem;
   letter-spacing: 8px;
@@ -165,7 +161,6 @@ header h1 {
   to   { opacity:1; transform: translateY(0) scale(1); }
 }
 
-/* Subtítulo con efecto máquina de escribir */
 header .subtitulo {
   font-size: 1.6rem;
   margin-top: 20px;
@@ -191,7 +186,6 @@ header .subtitulo {
   51%,100% { opacity:0; }
 }
 
-/* Botón CTA header */
 .btn-header {
   margin-top: 40px;
   padding: 18px 45px;
@@ -226,7 +220,6 @@ header .subtitulo {
   transform: translateY(-5px) scale(1.05);
 }
 
-/* Flecha abajo */
 .scroll-abajo {
   position:absolute;
   bottom:30px;
@@ -607,15 +600,56 @@ footer p:first-child {
   animation: textoBrillo 3s linear infinite;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== RESPONSIVE TABLET ===== */
+@media (max-width: 900px) {
+  header h1 { font-size: 3rem; letter-spacing: 4px; }
+  header .subtitulo { font-size: 1.2rem; }
+  section { padding: 40px 25px; margin: 50px 15px; }
+  section h2 { font-size: 1.9rem; }
+  .contador-item .numero { font-size: 2.8rem; }
+}
+
+/* ===== RESPONSIVE CELULAR ===== */
 @media (max-width: 700px) {
-  header h1 { font-size: 2.4rem; letter-spacing: 3px; }
-  header .subtitulo { font-size: 1.1rem; }
-  section { padding: 35px 22px; margin: 40px 12px; }
-  section h2 { font-size: 1.7rem; }
-  nav ul li a { padding: 15px 14px; font-size: 0.8rem; }
-  .contador-item .numero { font-size: 2.5rem; }
-  .btn-header { padding: 15px 30px; font-size: 0.9rem; }
+  header h1 { font-size: 1.6rem; letter-spacing: 1px; }
+  header .subtitulo { font-size: 0.85rem; letter-spacing: 1px; min-height: 1.5rem; }
+  .cursor-texto { height: 0.9rem; }
+  section { padding: 25px 18px; margin: 25px 10px; border-radius: 18px; }
+  section h2 { font-size: 1.25rem; padding-left: 15px; margin-bottom: 18px; }
+  section h2::before { width: 6px; }
+  section p { font-size: 0.9rem; line-height: 1.7; text-align: left; }
+  section ul li { font-size: 0.88rem; }
+  nav ul li a { padding: 12px 10px; font-size: 0.7rem; letter-spacing: 0.5px; }
+  .contadores { gap: 15px; margin-top: 30px; padding-top: 25px; }
+  .contador-item .numero { font-size: 1.9rem; }
+  .contador-item .etiqueta { font-size: 0.75rem; letter-spacing: 1px; }
+  .btn-header { padding: 12px 24px; font-size: 0.75rem; margin-top: 25px; }
+  .valor-card { padding: 20px 15px; }
+  .valor-card .emoji { font-size: 2.2rem; margin-bottom: 10px; }
+  .valor-card h3 { font-size: 1rem; }
+  .valor-card p { font-size: 0.85rem; }
+  .contacto-card { padding: 22px 12px; }
+  .contacto-card .icono { font-size: 2.2rem; margin-bottom: 10px; }
+  .contacto-card .nombre { font-size: 0.95rem; }
+  .contacto-card p { font-size: 0.78rem; }
+  .galeria img { height: 170px; }
+  .scroll-abajo { font-size: 1.5rem; bottom: 20px; }
+  .whatsapp-flotante { width: 55px; height: 55px; font-size: 1.7rem; bottom: 18px; right: 18px; }
+  .boton-subir { width: 45px; height: 45px; font-size: 1.3rem; bottom: 18px; left: 18px; }
+  footer { padding: 40px 15px; margin-top: 50px; }
+  footer p:first-child { font-size: 1.2rem; letter-spacing: 2px; }
+  footer p { font-size: 0.85rem; }
+}
+
+/* ===== RESPONSIVE CELULAR PEQUEÑO ===== */
+@media (max-width: 400px) {
+  header h1 { font-size: 1.3rem; letter-spacing: 0.5px; }
+  header .subtitulo { font-size: 0.75rem; }
+  section h2 { font-size: 1.1rem; }
+  section p { font-size: 0.85rem; }
+  section ul li { font-size: 0.82rem; }
+  nav ul li a { padding: 10px 8px; font-size: 0.65rem; }
+  .contador-item .numero { font-size: 1.6rem; }
 }
 </style>
 </head>
@@ -664,15 +698,11 @@ footer p:first-child {
   <!-- CONTADORES ANIMADOS -->
   <div class="contadores">
     <div class="contador-item">
-      <span class="numero" data-numero="250">0</span>
+      <span class="numero" data-numero="107">0</span>
       <span class="etiqueta">Miembros</span>
     </div>
     <div class="contador-item">
-      <span class="numero" data-numero="50">0</span>
-      <span class="etiqueta">Actividades</span>
-    </div>
-    <div class="contador-item">
-      <span class="numero" data-numero="15">0</span>
+      <span class="numero" data-numero="2">0</span>
       <span class="etiqueta">Comunidades</span>
     </div>
     <div class="contador-item">
@@ -713,7 +743,7 @@ footer p:first-child {
 <section id="respaldo">
   <h2>¿Quién Nos Respalda?</h2>
   <p><strong>JUVENTUDES ARE 61</strong> cuenta con el respaldo de líderes comunitarios, organizaciones sociales y ciudadanos comprometidos con el desarrollo de nuestra región.</p>
-  <p><!-- CAMBIA ESTO POR TU INFO REAL --> Contamos con el acompañamiento de [NOMBRE DEL LÍDER / ORGANIZACIÓN], quienes comparten nuestra visión de una juventud activa y con proyección de futuro.</p>
+  <p>Nuestro movimiento cuenta con el respaldo del <strong>Dr. José Bolívar Castillo</strong>, quien comparte nuestra visión de una juventud activa, preparada y con proyección de futuro.</p>
 </section>
 
 <!-- ===== CONTACTOS ===== -->
@@ -721,30 +751,30 @@ footer p:first-child {
   <h2>Contactos</h2>
   <p>Comunícate con nosotros por nuestros canales oficiales:</p>
   <div class="contactos">
-    <a href="https://wa.me/51999999999" target="_blank" class="contacto-card">
+    <a href="https://wa.me/593980781302" target="_blank" class="contacto-card">
       <span class="icono">📱</span>
       <span class="nombre">WhatsApp</span>
-      <p>+51 999 999 999</p>
+      <p>0980781302</p>
     </a>
-    <a href="https://facebook.com/juventudesare61" target="_blank" class="contacto-card">
+    <a href="https://facebook.com/juventudesare" target="_blank" class="contacto-card">
       <span class="icono">📘</span>
       <span class="nombre">Facebook</span>
-      <p>/juventudesare61</p>
+      <p>Juventudes Are</p>
     </a>
-    <a href="https://instagram.com/juventudesare61" target="_blank" class="contacto-card">
+    <a href="https://instagram.com/juventudesare" target="_blank" class="contacto-card">
       <span class="icono">📷</span>
       <span class="nombre">Instagram</span>
-      <p>@juventudesare61</p>
+      <p>@juventudesare</p>
     </a>
-    <a href="https://tiktok.com/@juventudesare61" target="_blank" class="contacto-card">
+    <a href="https://tiktok.com/@juventudesare" target="_blank" class="contacto-card">
       <span class="icono">🎵</span>
       <span class="nombre">TikTok</span>
-      <p>@juventudesare61</p>
+      <p>@juventudesare</p>
     </a>
-    <a href="mailto:contacto@juventudesare61.com" class="contacto-card">
+    <a href="mailto:juventudesare61@gmail.com" class="contacto-card">
       <span class="icono">✉️</span>
       <span class="nombre">Correo</span>
-      <p>contacto@juventudesare61.com</p>
+      <p>juventudesare61@gmail.com</p>
     </a>
   </div>
 </section>
@@ -771,7 +801,7 @@ footer p:first-child {
 </footer>
 
 <!-- ===== BOTONES FLOTANTES ===== -->
-<a href="https://wa.me/51999999999" target="_blank" class="whatsapp-flotante">💬</a>
+<a href="https://wa.me/593980781302" target="_blank" class="whatsapp-flotante">💬</a>
 <a href="#" class="boton-subir" id="btnSubir">↑</a>
 
 <!-- ===== JAVASCRIPT ===== -->
@@ -846,7 +876,7 @@ const obsCont = new IntersectionObserver((entradas) => {
       const el = entrada.target;
       const objetivo = +el.dataset.numero;
       let actual = 0;
-      const paso = objetivo / 60;
+      const paso = Math.max(1, objetivo / 60);
       const intervalo = setInterval(() => {
         actual += paso;
         if (actual >= objetivo) {
