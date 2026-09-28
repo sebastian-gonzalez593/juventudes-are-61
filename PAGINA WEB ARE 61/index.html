@@ -345,6 +345,21 @@ section ul { margin-left:25px; margin-bottom:15px; }
 section ul li { margin-bottom:14px; font-size:1.08rem; color:#134e4a; }
 section ul li strong { color:#10b981; }
 
+/* Bloque destacado dentro de secciones */
+.bloque-destacado {
+  background: linear-gradient(145deg, #ecfdf5, #d1fae5);
+  border-left: 6px solid #10b981;
+  border-radius: 15px;
+  padding: 25px 30px;
+  margin: 20px 0;
+  box-shadow: 0 6px 20px rgba(16,185,129,0.15);
+}
+.bloque-destacado p {
+  margin-bottom: 15px;
+  color: #064e3b;
+}
+.bloque-destacado p:last-child { margin-bottom: 0; }
+
 /* ===== VALORES ===== */
 .valores {
   display:grid;
@@ -545,7 +560,7 @@ section ul li strong { color:#10b981; }
 }
 .galeria .foto:hover img { transform: scale(1.15); }
 
-/* ===== LIGHTBOX (visor de imágenes) ===== */
+/* ===== LIGHTBOX ===== */
 .lightbox {
   position: fixed;
   inset: 0;
@@ -599,20 +614,6 @@ section ul li strong { color:#10b981; }
 .lightbox-cerrar:hover {
   background: rgba(16,185,129,0.9);
   transform: rotate(90deg) scale(1.1);
-}
-.lightbox-texto {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #d1fae5;
-  font-size: 1.1rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  background: rgba(6,78,59,0.7);
-  padding: 10px 30px;
-  border-radius: 30px;
-  border: 1px solid rgba(110,231,183,0.5);
 }
 
 /* ===== BOTÓN FLOTANTE WHATSAPP ===== */
@@ -716,6 +717,8 @@ footer p:first-child {
   section h2::before { width: 6px; }
   section p { font-size: 0.9rem; line-height: 1.7; text-align: left; }
   section ul li { font-size: 0.88rem; }
+  .bloque-destacado { padding: 18px 20px; border-left-width: 5px; }
+  .bloque-destacado p { font-size: 0.88rem; }
   nav ul li a { padding: 12px 10px; font-size: 0.7rem; letter-spacing: 0.5px; }
   .contadores { gap: 15px; margin-top: 30px; padding-top: 25px; }
   .contador-item .numero { font-size: 1.9rem; }
@@ -737,7 +740,6 @@ footer p:first-child {
   footer p:first-child { font-size: 1.2rem; letter-spacing: 2px; }
   footer p { font-size: 0.85rem; }
   .lightbox-cerrar { font-size: 2.2rem; width: 45px; height: 45px; top: 15px; right: 15px; }
-  .lightbox-texto { font-size: 0.85rem; padding: 8px 20px; }
 }
 
 /* ===== RESPONSIVE CELULAR PEQUEÑO ===== */
@@ -826,14 +828,17 @@ footer p:first-child {
 <!-- ===== MARCO IDEOLÓGICO ===== -->
 <section id="marco-ideologico">
   <h2>Marco Ideológico</h2>
-  <p>Nuestro movimiento se fundamenta en principios de <strong>justicia social, participación democrática y desarrollo humano integral</strong>.</p>
+  
+  <div class="bloque-destacado">
+    <p>El movimiento <strong>ARE</strong>, nacido en <strong>Loja</strong>, plantea transformar el Estado ecuatoriano bajo el <strong>humanismo cristiano</strong> para lograr <strong>equidad social y territorial</strong>.</p>
+  </div>
+  
   <ul>
-    <li><strong>Participación activa:</strong> la voz del joven debe ser escuchada.</li>
-    <li><strong>Equidad e inclusión:</strong> espacios con las mismas oportunidades para todos.</li>
-    <li><strong>Educación y cultura:</strong> la formación como motor del desarrollo.</li>
-    <li><strong>Compromiso comunitario:</strong> trabajo territorial con la gente.</li>
-    <li><strong>Ética y transparencia:</strong> coherencia y honestidad.</li>
-    <li><strong>Renovación generacional:</strong> nuevas ideas y nuevos liderazgos.</li>
+    <li><strong>Romper el centralismo:</strong> dividir el país en <strong>siete regiones autónomas</strong> con descentralización real de recursos y competencias.</li>
+    <li><strong>Financiar la demanda ciudadana:</strong> invertir en salud y educación directamente en beneficio del pueblo, y no en la burocracia.</li>
+    <li><strong>Impulsar créditos productivos estatales</strong> que fortalezcan la economía de las familias y emprendedores.</li>
+    <li><strong>Priorizar infraestructura de impacto nacional</strong> que conecte y desarrolle todas las regiones del país.</li>
+    <li><strong>Promover la integración regional e iberoamericana</strong> en el plano internacional.</li>
   </ul>
 </section>
 
@@ -1022,7 +1027,7 @@ document.querySelectorAll('.valor-card').forEach(card => {
   });
 });
 
-// ===== LIGHTBOX (visor de fotos) =====
+// ===== LIGHTBOX =====
 function abrirLightbox(src) {
   const lightbox = document.getElementById('lightbox');
   const img = document.getElementById('lightbox-img');
