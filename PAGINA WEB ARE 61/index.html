@@ -57,7 +57,7 @@ body::before {
   100% { transform: translate(40px,-40px) scale(1.15); }
 }
 
-/* ===== HEADER CON IMAGEN DE FONDO (igual que antes) ===== */
+/* ===== HEADER CON IMAGEN DE FONDO ===== */
 header {
   position: relative;
   min-height: 100vh;
@@ -435,7 +435,7 @@ section ul li strong { color:#10b981; }
   font-weight: 600;
 }
 
-/* ===== CONTACTOS (VERDES CLAROS) ===== */
+/* ===== CONTACTOS (CON LOGOS) ===== */
 .contactos {
   display:grid;
   grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
@@ -474,14 +474,17 @@ section ul li strong { color:#10b981; }
   border-color:#10b981;
   background: linear-gradient(145deg, #ffffff, #d1fae5);
 }
-.contacto-card .icono {
-  font-size: 3.2rem;
-  display:block;
-  margin-bottom:18px;
+.contacto-card .logo-red {
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 18px;
   transition: transform 0.5s;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
 }
-.contacto-card:hover .icono {
-  transform: scale(1.4) rotate(15deg);
+.contacto-card:hover .logo-red {
+  transform: scale(1.2) rotate(10deg);
 }
 .contacto-card .nombre { font-weight:bold; font-size:1.2rem; display:block; margin-bottom:8px; letter-spacing:1px; color:#059669; }
 .contacto-card p { font-size: 0.92rem; color: #134e4a; margin: 0; text-align: center; }
@@ -635,7 +638,7 @@ footer p:first-child {
   .valor-card h3 { font-size: 1rem; }
   .valor-card p { font-size: 0.85rem; }
   .contacto-card { padding: 22px 12px; }
-  .contacto-card .icono { font-size: 2.2rem; margin-bottom: 10px; }
+  .contacto-card .logo-red { width: 50px; height: 50px; margin-bottom: 12px; }
   .contacto-card .nombre { font-size: 0.95rem; }
   .contacto-card p { font-size: 0.78rem; }
   .galeria img { height: 170px; }
@@ -757,27 +760,27 @@ footer p:first-child {
   <p>Comunícate con nosotros por nuestros canales oficiales:</p>
   <div class="contactos">
     <a href="https://wa.me/593980781302" target="_blank" class="contacto-card">
-      <span class="icono">📱</span>
+      <img src="logos/whatsapp.png" alt="WhatsApp" class="logo-red">
       <span class="nombre">WhatsApp</span>
       <p>0980781302</p>
     </a>
     <a href="https://facebook.com/juventudesare" target="_blank" class="contacto-card">
-      <span class="icono">📘</span>
+      <img src="logos/facebook.webp" alt="Facebook" class="logo-red">
       <span class="nombre">Facebook</span>
       <p>Juventudes Are</p>
     </a>
     <a href="https://instagram.com/juventudesare" target="_blank" class="contacto-card">
-      <span class="icono">📷</span>
+      <img src="logos/instagram.png" alt="Instagram" class="logo-red">
       <span class="nombre">Instagram</span>
       <p>@juventudesare</p>
     </a>
     <a href="https://tiktok.com/@juventudesare" target="_blank" class="contacto-card">
-      <span class="icono">🎵</span>
+      <img src="logos/tiktok.webp" alt="TikTok" class="logo-red">
       <span class="nombre">TikTok</span>
       <p>@juventudesare</p>
     </a>
     <a href="mailto:juventudesare61@gmail.com" class="contacto-card">
-      <span class="icono">✉️</span>
+      <img src="logos/gmail.webp" alt="Correo" class="logo-red">
       <span class="nombre">Correo</span>
       <p>juventudesare61@gmail.com</p>
     </a>
