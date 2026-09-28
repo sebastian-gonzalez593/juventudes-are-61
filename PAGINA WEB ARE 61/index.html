@@ -67,35 +67,43 @@ header {
   align-items:center;
   text-align:center;
   color:white;
-  background: linear-gradient(-45deg, rgba(2,44,34,0.75), rgba(16,185,129,0.65), rgba(6,78,59,0.75), rgba(52,211,153,0.6), rgba(5,150,105,0.75)),
-              url('fondo.png');
-  background-size: 500% 500%, cover;
-  background-position: center, center;
-  background-repeat: no-repeat, no-repeat;
-  animation: gradiente 15s ease infinite, zoomFondo 20s ease-in-out infinite alternate;
+  background: url('fondo.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   overflow:hidden;
   padding: 20px;
 }
-@keyframes gradiente {
-  0%   { background-position: 0% 50%, center; }
-  50%  { background-position: 100% 50%, center; }
-  100% { background-position: 0% 50%, center; }
+
+/* Capa verde semitransparente encima de la imagen */
+header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-45deg, rgba(2,44,34,0.70), rgba(16,185,129,0.60), rgba(6,78,59,0.70), rgba(52,211,153,0.55), rgba(5,150,105,0.70));
+  background-size: 500% 500%;
+  animation: gradiente 15s ease infinite;
+  pointer-events: none;
+  z-index: 1;
 }
-@keyframes zoomFondo {
-  0%   { background-size: 500% 500%, 100%; }
-  100% { background-size: 500% 500%, 120%; }
+@keyframes gradiente {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
+/* Grid decorativo */
 header::before {
   content:"";
   position:absolute;
   inset:0;
   background-image: 
-    linear-gradient(rgba(52,211,153,0.10) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(52,211,153,0.10) 1px, transparent 1px);
+    linear-gradient(rgba(52,211,153,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(52,211,153,0.08) 1px, transparent 1px);
   background-size: 50px 50px;
   animation: moverGrid 20s linear infinite;
   pointer-events:none;
+  z-index: 2;
 }
 @keyframes moverGrid {
   0%   { background-position: 0 0; }
@@ -111,6 +119,7 @@ header::before {
   background: rgba(255,255,255,0.08);
   border-radius: 50%;
   animation: onda 8s ease-in-out infinite;
+  z-index: 3;
 }
 .onda:nth-child(2) { animation-duration: 10s; animation-delay: 1s; opacity:0.5; bottom:-30px; }
 .onda:nth-child(3) { animation-duration: 12s; animation-delay: 2s; opacity:0.3; bottom:-50px; }
@@ -119,7 +128,7 @@ header::before {
   50%     { transform: translateX(0%) scaleY(1.4); }
 }
 
-.particulas { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.particulas { position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index: 4; }
 .particulas span {
   position:absolute;
   display:block;
@@ -150,18 +159,14 @@ header h1 {
   letter-spacing: 8px;
   text-transform: uppercase;
   font-weight: 900;
-  z-index:2;
-  position:relative;
-  background: linear-gradient(90deg, #fff, #6ee7b7, #fff, #34d399, #fff);
-  background-size: 300% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: textoBrillo 4s linear infinite, aparecerArriba 1.2s ease-out;
-  filter: drop-shadow(0 0 25px rgba(110,231,183,0.8));
-}
-@keyframes textoBrillo {
-  to { background-position: 300% center; }
+  z-index: 5;
+  position: relative;
+  color: white;
+  text-shadow: 
+    0 4px 15px rgba(0,0,0,0.9),
+    0 0 40px rgba(0,0,0,0.8),
+    0 0 80px rgba(16,185,129,0.6);
+  animation: aparecerArriba 1.2s ease-out;
 }
 @keyframes aparecerArriba {
   from { opacity:0; transform: translateY(-80px) scale(0.7); }
@@ -172,12 +177,14 @@ header .subtitulo {
   font-size: 1.6rem;
   margin-top: 20px;
   letter-spacing: 3px;
-  z-index:2;
-  position:relative;
-  color:#d1fae5;
+  z-index: 5;
+  position: relative;
+  color: #d1fae5;
   min-height: 2.2rem;
   animation: aparecerArriba 1.5s ease-out 0.5s both;
-  text-shadow: 0 2px 15px rgba(0,0,0,0.6);
+  text-shadow: 
+    0 2px 10px rgba(0,0,0,0.9),
+    0 0 20px rgba(0,0,0,0.7);
 }
 .cursor-texto {
   display:inline-block;
@@ -197,14 +204,14 @@ header .subtitulo {
 .btn-header {
   margin-top: 40px;
   padding: 18px 45px;
-  background: rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.4);
   border: 2px solid #6ee7b7;
   color: white;
   text-decoration:none;
   font-weight: bold;
   letter-spacing: 2px;
   border-radius: 50px;
-  z-index:2;
+  z-index: 5;
   position:relative;
   overflow:hidden;
   transition: all 0.4s;
@@ -235,7 +242,7 @@ header .subtitulo {
   font-size:2.5rem;
   animation: rebotar 1.5s infinite;
   text-decoration:none;
-  z-index:2;
+  z-index: 5;
   text-shadow: 0 0 20px #34d399;
 }
 @keyframes rebotar {
@@ -606,6 +613,9 @@ footer p:first-child {
   -webkit-text-fill-color: transparent;
   font-weight: 900;
   animation: textoBrillo 3s linear infinite;
+}
+@keyframes textoBrillo {
+  to { background-position: 200% center; }
 }
 
 /* ===== RESPONSIVE TABLET ===== */
