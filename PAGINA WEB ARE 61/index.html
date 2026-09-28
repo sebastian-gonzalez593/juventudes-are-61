@@ -57,7 +57,7 @@ body::before {
   100% { transform: translate(40px,-40px) scale(1.15); filter:hue-rotate(20deg); }
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER CON IMAGEN DE FONDO ===== */
 header {
   position: relative;
   min-height: 100vh;
@@ -67,16 +67,23 @@ header {
   align-items:center;
   text-align:center;
   color:white;
-  background: linear-gradient(-45deg, #022c22, #10b981, #064e3b, #34d399, #059669);
-  background-size: 500% 500%;
-  animation: gradiente 10s ease infinite;
+  background: linear-gradient(-45deg, rgba(2,44,34,0.75), rgba(16,185,129,0.65), rgba(6,78,59,0.75), rgba(52,211,153,0.6), rgba(5,150,105,0.75)),
+              url('fondo.png');
+  background-size: 500% 500%, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  animation: gradiente 15s ease infinite, zoomFondo 20s ease-in-out infinite alternate;
   overflow:hidden;
   padding: 20px;
 }
 @keyframes gradiente {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0%   { background-position: 0% 50%, center; }
+  50%  { background-position: 100% 50%, center; }
+  100% { background-position: 0% 50%, center; }
+}
+@keyframes zoomFondo {
+  0%   { background-size: 500% 500%, 100%; }
+  100% { background-size: 500% 500%, 120%; }
 }
 
 header::before {
@@ -84,8 +91,8 @@ header::before {
   position:absolute;
   inset:0;
   background-image: 
-    linear-gradient(rgba(52,211,153,0.15) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(52,211,153,0.15) 1px, transparent 1px);
+    linear-gradient(rgba(52,211,153,0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(52,211,153,0.10) 1px, transparent 1px);
   background-size: 50px 50px;
   animation: moverGrid 20s linear infinite;
   pointer-events:none;
@@ -170,6 +177,7 @@ header .subtitulo {
   color:#d1fae5;
   min-height: 2.2rem;
   animation: aparecerArriba 1.5s ease-out 0.5s both;
+  text-shadow: 0 2px 15px rgba(0,0,0,0.6);
 }
 .cursor-texto {
   display:inline-block;
