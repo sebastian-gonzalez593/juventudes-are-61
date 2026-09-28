@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JUVENTUDES ARE 61 - Movimiento Juvenil</title>
+<style>
+/* ===== RESET ===== */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, sans-serif; }
+html { scroll-behavior: smooth; }
+body {
+  background:#05140d;
+  color:#e8fff5;
+  overflow-x:hidden;
+  cursor: none;
+}
+
+/* ===== CURSOR PERSONALIZADO ===== */
+.cursor-dot {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  box-shadow: 0 0 15px #10b981, 0 0 30px #10b981;
+  transform: translate(-50%,-50%);
+  transition: transform 0.05s;
+}
+.cursor-ring {
+  position: fixed;
+  width: 40px; height: 40px;
+  border: 2px solid #34d399;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%,-50%);
+  transition: all 0.15s ease-out;
+  box-shadow: 0 0 20px rgba(16,185,129,0.5);
+}
+@media (max-width: 900px) { body { cursor: auto; } .cursor-dot, .cursor-ring { display:none; } }
+
+/* ===== FONDO ANIMADO CON LUCES ===== */
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(16,185,129,0.20), transparent 35%),
+    radial-gradient(circle at 85% 80%, rgba(52,211,153,0.15), transparent 35%),
+    radial-gradient(circle at 50% 50%, rgba(5,150,105,0.10), transparent 50%);
+  z-index:-1;
+  animation: moverFondo 12s infinite alternate ease-in-out;
+}
+@keyframes moverFondo {
+  0%   { transform: translate(0,0) scale(1); filter:hue-rotate(0deg); }
+  100% { transform: translate(40px,-40px) scale(1.15); filter:hue-rotate(20deg); }
+}
+
+/* ===== HEADER ===== */
+header {
+  position: relative;
+  min-height: 100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+  background: linear-gradient(-45deg, #022c22, #10b981, #064e3b, #34d399, #059669);
+  background-size: 500% 500%;
+  animation: gradiente 10s ease infinite;
+  overflow:hidden;
+  padding: 20px;
+}
+@keyframes gradiente {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Grid neón de fondo */
+header::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image: 
+    linear-gradient(rgba(52,211,153,0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(52,211,153,0.15) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: moverGrid 20s linear infinite;
+  pointer-events:none;
+}
+@keyframes moverGrid {
+  0%   { background-position: 0 0; }
+  100% { background-position: 50px 50px; }
+}
+
+/* Ondas */
+.onda {
+  position:absolute;
+  bottom:-10px;
+  left:0;
+  width:200%;
+  height:120px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  animation: onda 8s ease-in-out infinite;
+}
+.onda:nth-child(2) { animation-duration: 10s; animation-delay: 1s; opacity:0.5; bottom:-30px; }
+.onda:nth-child(3) { animation-duration: 12s; animation-delay: 2s; opacity:0.3; bottom:-50px; }
+@keyframes onda {
+  0%,100% { transform: translateX(-25%) scaleY(1); }
+  50%     { transform: translateX(0%) scaleY(1.4); }
+}
+
+/* Partículas flotantes */
+.particulas { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.particulas span {
+  position:absolute;
+  display:block;
+  background: rgba(110,231,183,0.8);
+  border-radius:50%;
+  bottom:-20px;
+  box-shadow: 0 0 15px #34d399;
+  animation: subir 15s linear infinite;
+}
+@keyframes subir {
+  0%   { transform: translateY(0) rotate(0); opacity:0; }
+  10%  { opacity:1; }
+  100% { transform: translateY(-110vh) rotate(720deg); opacity:0; }
+}
+.particulas span:nth-child(1){ left:5%;  width:6px; height:6px; animation-duration:11s; }
+.particulas span:nth-child(2){ left:15%; width:10px; height:10px; animation-duration:17s; }
+.particulas span:nth-child(3){ left:25%; width:4px; height:4px; animation-duration:13s; }
+.particulas span:nth-child(4){ left:35%; width:14px; height:14px; animation-duration:19s; }
+.particulas span:nth-child(5){ left:45%; width:8px; height:8px; animation-duration:15s; }
+.particulas span:nth-child(6){ left:55%; width:12px; height:12px; animation-duration:21s; }
+.particulas span:nth-child(7){ left:65%; width:6px; height:6px; animation-duration:14s; }
+.particulas span:nth-child(8){ left:75%; width:10px; height:10px; animation-duration:18s; }
+.particulas span:nth-child(9){ left:85%; width:5px; height:5px; animation-duration:12s; }
+.particulas span:nth-child(10){ left:95%; width:13px; height:13px; animation-duration:20s; }
+
+/* Título */
+header h1 {
+  font-size: 5rem;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  font-weight: 900;
+  z-index:2;
+  position:relative;
+  background: linear-gradient(90deg, #fff, #6ee7b7, #fff, #34d399, #fff);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textoBrillo 4s linear infinite, aparecerArriba 1.2s ease-out;
+  filter: drop-shadow(0 0 25px rgba(110,231,183,0.8));
+}
+@keyframes textoBrillo {
+  to { background-position: 300% center; }
+}
+@keyframes aparecerArriba {
+  from { opacity:0; transform: translateY(-80px) scale(0.7); }
+  to   { opacity:1; transform: translateY(0) scale(1); }
+}
+
+/* Subtítulo con efecto máquina de escribir */
+header .subtitulo {
+  font-size: 1.6rem;
+  margin-top: 20px;
+  letter-spacing: 3px;
+  z-index:2;
+  position:relative;
+  color:#d1fae5;
+  min-height: 2.2rem;
+  animation: aparecerArriba 1.5s ease-out 0.5s both;
+}
+.cursor-texto {
+  display:inline-block;
+  width: 3px;
+  height: 1.3rem;
+  background: #6ee7b7;
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: parpadeo 0.8s infinite;
+  box-shadow: 0 0 10px #6ee7b7;
+}
+@keyframes parpadeo {
+  0%,50% { opacity:1; }
+  51%,100% { opacity:0; }
+}
+
+/* Botón CTA header */
+.btn-header {
+  margin-top: 40px;
+  padding: 18px 45px;
+  background: rgba(255,255,255,0.1);
+  border: 2px solid #6ee7b7;
+  color: white;
+  text-decoration:none;
+  font-weight: bold;
+  letter-spacing: 2px;
+  border-radius: 50px;
+  z-index:2;
+  position:relative;
+  overflow:hidden;
+  transition: all 0.4s;
+  backdrop-filter: blur(10px);
+  animation: aparecerArriba 1.8s ease-out 0.8s both;
+  text-transform: uppercase;
+}
+.btn-header::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(90deg, #10b981, #34d399, #6ee7b7);
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+  z-index:-1;
+}
+.btn-header:hover::before { transform: translateX(0); }
+.btn-header:hover {
+  color:#022c22;
+  box-shadow: 0 0 40px #34d399, 0 0 80px rgba(52,211,153,0.5);
+  transform: translateY(-5px) scale(1.05);
+}
+
+/* Flecha abajo */
+.scroll-abajo {
+  position:absolute;
+  bottom:30px;
+  color:#6ee7b7;
+  font-size:2.5rem;
+  animation: rebotar 1.5s infinite;
+  text-decoration:none;
+  z-index:2;
+  text-shadow: 0 0 20px #34d399;
+}
+@keyframes rebotar {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(20px); }
+}
+
+/* ===== NAVEGACIÓN ===== */
+nav {
+  background: rgba(2,44,34,0.9);
+  backdrop-filter: blur(15px);
+  position: sticky;
+  top:0;
+  z-index:1000;
+  box-shadow: 0 4px 30px rgba(16,185,129,0.3);
+  transition: all 0.3s;
+  border-bottom: 1px solid rgba(52,211,153,0.3);
+}
+nav ul { display:flex; justify-content:center; flex-wrap:wrap; list-style:none; }
+nav ul li a {
+  display:block;
+  color:white;
+  padding: 20px 24px;
+  text-decoration:none;
+  font-weight:700;
+  position:relative;
+  transition: all 0.3s;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+nav ul li a::after {
+  content:"";
+  position:absolute;
+  left:50%; bottom:10px;
+  width:0; height:3px;
+  background: linear-gradient(90deg, #10b981, #6ee7b7);
+  transition: all 0.3s;
+  transform: translateX(-50%);
+  box-shadow: 0 0 15px #34d399;
+}
+nav ul li a:hover { color:#6ee7b7; transform: translateY(-3px); }
+nav ul li a:hover::after { width:80%; }
+
+/* ===== SECCIONES ===== */
+section {
+  max-width: 1150px;
+  margin: 80px auto;
+  padding: 60px 45px;
+  background: linear-gradient(145deg, rgba(6,78,59,0.7), rgba(2,44,34,0.9));
+  border-radius: 25px;
+  border: 1px solid rgba(52,211,153,0.3);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 0 60px rgba(16,185,129,0.05);
+  opacity:0;
+  transform: translateY(80px) scale(0.95);
+  transition: opacity 1s ease, transform 1s cubic-bezier(0.25,0.8,0.25,1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+section::before {
+  content:"";
+  position:absolute;
+  top:-50%; left:-50%;
+  width:200%; height:200%;
+  background: conic-gradient(from 0deg, transparent, rgba(52,211,153,0.1), transparent 30%);
+  animation: rotar 10s linear infinite;
+  pointer-events: none;
+}
+@keyframes rotar { to { transform: rotate(360deg); } }
+section.visible { opacity:1; transform: translateY(0) scale(1); }
+section > * { position: relative; z-index:1; }
+
+section h2 {
+  color: #6ee7b7;
+  font-size: 2.6rem;
+  margin-bottom: 30px;
+  padding-left: 25px;
+  position:relative;
+  text-shadow: 0 0 20px rgba(110,231,183,0.6);
+  letter-spacing: 1px;
+}
+section h2::before {
+  content:"";
+  position:absolute;
+  left:0; top:50%;
+  transform: translateY(-50%);
+  width:10px; height:70%;
+  background: linear-gradient(180deg, #10b981, #6ee7b7);
+  border-radius:5px;
+  box-shadow: 0 0 20px #34d399;
+  animation: pulso 2s infinite;
+}
+@keyframes pulso {
+  0%,100% { box-shadow: 0 0 20px #34d399; }
+  50%     { box-shadow: 0 0 40px #6ee7b7, 0 0 60px #34d399; }
+}
+
+section p {
+  margin-bottom:18px;
+  text-align: justify;
+  font-size: 1.12rem;
+  line-height:1.9;
+  color:#d1fae5;
+}
+section strong { color: #6ee7b7; text-shadow: 0 0 10px rgba(110,231,183,0.5); }
+section ul { margin-left:25px; margin-bottom:15px; }
+section ul li { margin-bottom:14px; font-size:1.08rem; color:#d1fae5; }
+section ul li strong { color:#34d399; }
+
+/* ===== TARJETAS DE VALORES 3D ===== */
+.valores {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+  gap:25px;
+  margin-top:35px;
+  perspective: 1000px;
+}
+.valor-card {
+  background: linear-gradient(145deg, rgba(6,78,59,0.8), rgba(2,44,34,0.95));
+  border: 1px solid rgba(52,211,153,0.3);
+  border-radius:18px;
+  padding: 35px 25px;
+  text-align:center;
+  transition: all 0.5s cubic-bezier(0.25,0.8,0.25,1);
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  transform-style: preserve-3d;
+}
+.valor-card::before {
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: linear-gradient(45deg, #10b981, #6ee7b7, #34d399, #10b981);
+  background-size: 300% 300%;
+  border-radius:18px;
+  z-index:-1;
+  opacity:0;
+  transition: opacity 0.4s;
+  animation: bordeNeon 3s linear infinite;
+}
+@keyframes bordeNeon { 
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+.valor-card:hover::before { opacity:1; }
+.valor-card:hover {
+  transform: translateY(-15px) rotateX(8deg) rotateY(-5deg) scale(1.05);
+  box-shadow: 0 30px 60px rgba(16,185,129,0.5), 0 0 80px rgba(110,231,183,0.3);
+}
+.valor-card .emoji {
+  font-size: 3.5rem;
+  display:inline-block;
+  margin-bottom:18px;
+  animation: flotar 3s infinite ease-in-out;
+  filter: drop-shadow(0 0 15px rgba(110,231,183,0.7));
+}
+@keyframes flotar {
+  0%,100% { transform: translateY(0) rotate(-5deg); }
+  50%     { transform: translateY(-12px) rotate(5deg); }
+}
+.valor-card h3 { 
+  color:#6ee7b7; 
+  margin-bottom:12px; 
+  font-size:1.35rem; 
+  letter-spacing:1px;
+  text-shadow: 0 0 15px rgba(110,231,183,0.6);
+}
+
+/* ===== CONTADORES ===== */
+.contadores {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+  gap:30px;
+  margin-top:50px;
+  padding-top:40px;
+  border-top: 1px solid rgba(52,211,153,0.2);
+}
+.contador-item { text-align:center; }
+.contador-item .numero {
+  font-size: 3.5rem;
+  font-weight: 900;
+  background: linear-gradient(180deg, #6ee7b7, #10b981);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(110,231,183,0.6));
+  display:block;
+}
+.contador-item .etiqueta {
+  color:#a7f3d0;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  display:block;
+}
+
+/* ===== CONTACTOS ===== */
+.contactos {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap:22px;
+  margin-top:35px;
+}
+.contacto-card {
+  text-align:center;
+  padding: 35px 20px;
+  border-radius:18px;
+  background: linear-gradient(145deg, rgba(6,78,59,0.9), rgba(2,44,34,0.95));
+  border: 1px solid rgba(52,211,153,0.3);
+  color:white;
+  text-decoration:none;
+  transition: all 0.5s cubic-bezier(0.25,0.8,0.25,1);
+  position:relative;
+  overflow:hidden;
+}
+.contacto-card::before {
+  content:"";
+  position:absolute;
+  top:50%; left:50%;
+  width:0; height:0;
+  background: radial-gradient(circle, #10b981, transparent 70%);
+  border-radius:50%;
+  transform: translate(-50%,-50%);
+  transition: all 0.6s;
+  z-index:0;
+}
+.contacto-card:hover::before { width: 400px; height: 400px; }
+.contacto-card > * { position:relative; z-index:1; }
+.contacto-card:hover {
+  transform: translateY(-12px) scale(1.05);
+  box-shadow: 0 25px 50px rgba(16,185,129,0.5), 0 0 60px rgba(110,231,183,0.3);
+  border-color:#6ee7b7;
+}
+.contacto-card .icono {
+  font-size: 3.2rem;
+  display:block;
+  margin-bottom:18px;
+  transition: transform 0.5s;
+}
+.contacto-card:hover .icono {
+  transform: scale(1.4) rotate(15deg);
+  filter: drop-shadow(0 0 20px #6ee7b7);
+}
+.contacto-card .nombre { font-weight:bold; font-size:1.2rem; display:block; margin-bottom:8px; letter-spacing:1px; }
+
+/* ===== GALERÍA ===== */
+.galeria {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
+  gap:18px;
+  margin-top:35px;
+}
+.galeria .foto {
+  position:relative;
+  overflow:hidden;
+  border-radius:18px;
+  border: 1px solid rgba(52,211,153,0.3);
+  transition: all 0.5s;
+}
+.galeria .foto::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, transparent 50%, rgba(16,185,129,0.7));
+  opacity:0;
+  transition: opacity 0.4s;
+}
+.galeria img {
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  display:block;
+  transition: transform 0.6s cubic-bezier(0.25,0.8,0.25,1);
+}
+.galeria .foto:hover { 
+  transform: translateY(-10px) scale(1.02); 
+  box-shadow: 0 25px 50px rgba(16,185,129,0.5), 0 0 60px rgba(110,231,183,0.4);
+  border-color:#6ee7b7;
+}
+.galeria .foto:hover img { transform: scale(1.15) rotate(3deg); }
+.galeria .foto:hover::after { opacity:1; }
+
+/* ===== BOTÓN FLOTANTE WHATSAPP ===== */
+.whatsapp-flotante {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(145deg, #25D366, #128C7E);
+  border-radius: 50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size: 2.2rem;
+  color:white;
+  text-decoration:none;
+  box-shadow: 0 8px 30px rgba(37,211,102,0.8);
+  z-index: 999;
+  animation: latido 2s infinite;
+  transition: transform 0.3s;
+}
+.whatsapp-flotante:hover { transform: scale(1.2) rotate(15deg); }
+@keyframes latido {
+  0%,100% { box-shadow: 0 8px 30px rgba(37,211,102,0.8), 0 0 0 0 rgba(37,211,102,0.7); }
+  50%     { box-shadow: 0 8px 40px rgba(37,211,102,1), 0 0 0 20px rgba(37,211,102,0); }
+}
+
+/* ===== BOTÓN SUBIR ===== */
+.boton-subir {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(145deg, #10b981, #059669);
+  border-radius: 50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size: 1.8rem;
+  color:white;
+  text-decoration:none;
+  box-shadow: 0 8px 25px rgba(16,185,129,0.7);
+  z-index: 999;
+  opacity:0;
+  pointer-events:none;
+  transition: all 0.4s;
+}
+.boton-subir.visible { opacity:1; pointer-events:auto; }
+.boton-subir:hover { transform: translateY(-8px) scale(1.15); box-shadow: 0 15px 40px rgba(110,231,183,0.9); }
+
+/* ===== PIE DE PÁGINA ===== */
+footer {
+  background: linear-gradient(135deg, #022c22, #000);
+  color:white;
+  text-align:center;
+  padding: 60px 20px;
+  margin-top: 80px;
+  border-top: 1px solid rgba(52,211,153,0.3);
+  position: relative;
+  overflow: hidden;
+}
+footer::before {
+  content:"";
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:3px;
+  background: linear-gradient(90deg, transparent, #10b981, #6ee7b7, #10b981, transparent);
+  animation: lineaFooter 3s linear infinite;
+  background-size: 200% 100%;
+}
+@keyframes lineaFooter {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+footer p { margin-bottom:12px; position: relative; z-index:1; }
+footer p:first-child {
+  font-size: 1.8rem;
+  letter-spacing: 5px;
+  background: linear-gradient(90deg, #6ee7b7, #10b981, #6ee7b7);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+  animation: textoBrillo 3s linear infinite;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  header h1 { font-size: 2.4rem; letter-spacing: 3px; }
+  header .subtitulo { font-size: 1.1rem; }
+  section { padding: 35px 22px; margin: 40px 12px; }
+  section h2 { font-size: 1.7rem; }
+  nav ul li a { padding: 15px 14px; font-size: 0.8rem; }
+  .contador-item .numero { font-size: 2.5rem; }
+  .btn-header { padding: 15px 30px; font-size: 0.9rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Cursor personalizado -->
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="particulas">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="onda"></div>
+  <div class="onda"></div>
+  <div class="onda"></div>
+  
+  <h1>JUVENTUDES ARE 61</h1>
+  <p class="subtitulo">
+    <span id="textoAnimado"></span><span class="cursor-texto"></span>
+  </p>
+  <a href="#quienes-somos" class="btn-header">Descubre Más 🚀</a>
+  <a href="#quienes-somos" class="scroll-abajo">▼</a>
+</header>
+
+<!-- ===== NAVEGACIÓN ===== -->
+<nav>
+  <ul>
+    <li><a href="#quienes-somos">¿Quiénes Somos?</a></li>
+    <li><a href="#nos-caracteriza">Nos Caracteriza</a></li>
+    <li><a href="#marco-ideologico">Marco Ideológico</a></li>
+    <li><a href="#respaldo">Respaldo</a></li>
+    <li><a href="#contactos">Contactos</a></li>
+    <li><a href="#galeria">Galería</a></li>
+  </ul>
+</nav>
+
+<!-- ===== QUIÉNES SOMOS ===== -->
+<section id="quienes-somos">
+  <h2>¿Quiénes Somos?</h2>
+  <p><strong>JUVENTUDES ARE 61</strong> es un movimiento juvenil conformado por jóvenes comprometidos con el desarrollo social, político y comunitario de nuestra región. Nacimos con el propósito de dar voz a las nuevas generaciones, promoviendo la participación activa, la organización y el trabajo en equipo.</p>
+  <p>Somos estudiantes, trabajadores, emprendedores y ciudadanos que creen firmemente en el poder transformador de la juventud cuando se une con una causa clara y un propósito común.</p>
+  
+  <!-- CONTADORES ANIMADOS -->
+  <div class="contadores">
+    <div class="contador-item">
+      <span class="numero" data-numero="250">0</span>
+      <span class="etiqueta">Miembros</span>
+    </div>
+    <div class="contador-item">
+      <span class="numero" data-numero="50">0</span>
+      <span class="etiqueta">Actividades</span>
+    </div>
+    <div class="contador-item">
+      <span class="numero" data-numero="15">0</span>
+      <span class="etiqueta">Comunidades</span>
+    </div>
+    <div class="contador-item">
+      <span class="numero" data-numero="100">0</span>
+      <span class="etiqueta">% Compromiso</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NOS CARACTERIZA ===== -->
+<section id="nos-caracteriza">
+  <h2>¿Qué Nos Caracteriza?</h2>
+  <div class="valores">
+    <div class="valor-card"><span class="emoji">🤝</span><h3>Compromiso</h3><p>Asumimos con responsabilidad cada proyecto en favor de nuestra comunidad.</p></div>
+    <div class="valor-card"><span class="emoji">🌟</span><h3>Liderazgo</h3><p>Formamos jóvenes líderes capaces de inspirar y transformar su entorno.</p></div>
+    <div class="valor-card"><span class="emoji">🎯</span><h3>Disciplina</h3><p>Trabajamos con orden, constancia y respeto por nuestros objetivos.</p></div>
+    <div class="valor-card"><span class="emoji">❤️</span><h3>Solidaridad</h3><p>Apoyamos a quienes más lo necesitan, porque el progreso debe ser colectivo.</p></div>
+    <div class="valor-card"><span class="emoji">🔥</span><h3>Unidad</h3><p>Creemos en la fuerza del equipo: juntos llegamos más lejos.</p></div>
+    <div class="valor-card"><span class="emoji">📚</span><h3>Formación</h3><p>Impulsamos la educación y el crecimiento personal de cada integrante.</p></div>
+  </div>
+</section>
+
+<!-- ===== MARCO IDEOLÓGICO ===== -->
+<section id="marco-ideologico">
+  <h2>Marco Ideológico</h2>
+  <p>Nuestro movimiento se fundamenta en principios de <strong>justicia social, participación democrática y desarrollo humano integral</strong>.</p>
+  <ul>
+    <li><strong>Participación activa:</strong> la voz del joven debe ser escuchada.</li>
+    <li><strong>Equidad e inclusión:</strong> espacios con las mismas oportunidades para todos.</li>
+    <li><strong>Educación y cultura:</strong> la formación como motor del desarrollo.</li>
+    <li><strong>Compromiso comunitario:</strong> trabajo territorial con la gente.</li>
+    <li><strong>Ética y transparencia:</strong> coherencia y honestidad.</li>
+    <li><strong>Renovación generacional:</strong> nuevas ideas y nuevos liderazgos.</li>
+  </ul>
+</section>
+
+<!-- ===== RESPALDO ===== -->
+<section id="respaldo">
+  <h2>¿Quién Nos Respalda?</h2>
+  <p><strong>JUVENTUDES ARE 61</strong> cuenta con el respaldo de líderes comunitarios, organizaciones sociales y ciudadanos comprometidos con el desarrollo de nuestra región.</p>
+  <p><!-- CAMBIA ESTO POR TU INFO REAL --> Contamos con el acompañamiento de [NOMBRE DEL LÍDER / ORGANIZACIÓN], quienes comparten nuestra visión de una juventud activa y con proyección de futuro.</p>
+</section>
+
+<!-- ===== CONTACTOS ===== -->
+<section id="contactos">
+  <h2>Contactos</h2>
+  <p>Comunícate con nosotros por nuestros canales oficiales:</p>
+  <div class="contactos">
+    <a href="https://wa.me/51999999999" target="_blank" class="contacto-card">
+      <span class="icono">📱</span>
+      <span class="nombre">WhatsApp</span>
+      <p>+51 999 999 999</p>
+    </a>
+    <a href="https://facebook.com/juventudesare61" target="_blank" class="contacto-card">
+      <span class="icono">📘</span>
+      <span class="nombre">Facebook</span>
+      <p>/juventudesare61</p>
+    </a>
+    <a href="https://instagram.com/juventudesare61" target="_blank" class="contacto-card">
+      <span class="icono">📷</span>
+      <span class="nombre">Instagram</span>
+      <p>@juventudesare61</p>
+    </a>
+    <a href="https://tiktok.com/@juventudesare61" target="_blank" class="contacto-card">
+      <span class="icono">🎵</span>
+      <span class="nombre">TikTok</span>
+      <p>@juventudesare61</p>
+    </a>
+    <a href="mailto:contacto@juventudesare61.com" class="contacto-card">
+      <span class="icono">✉️</span>
+      <span class="nombre">Correo</span>
+      <p>contacto@juventudesare61.com</p>
+    </a>
+  </div>
+</section>
+
+<!-- ===== GALERÍA ===== -->
+<section id="galeria">
+  <h2>Galería de Fotos</h2>
+  <p>Momentos, actividades y trabajo en territorio de JUVENTUDES ARE 61.</p>
+  <div class="galeria">
+    <div class="foto"><img src="https://picsum.photos/400/300?random=1" alt="Foto 1"></div>
+    <div class="foto"><img src="https://picsum.photos/400/300?random=2" alt="Foto 2"></div>
+    <div class="foto"><img src="https://picsum.photos/400/300?random=3" alt="Foto 3"></div>
+    <div class="foto"><img src="https://picsum.photos/400/300?random=4" alt="Foto 4"></div>
+    <div class="foto"><img src="https://picsum.photos/400/300?random=5" alt="Foto 5"></div>
+    <div class="foto"><img src="https://picsum.photos/400/300?random=6" alt="Foto 6"></div>
+  </div>
+</section>
+
+<!-- ===== PIE ===== -->
+<footer>
+  <p>JUVENTUDES ARE 61</p>
+  <p>© 2025 Todos los derechos reservados.</p>
+  <p>Compromiso · Liderazgo · Cambio</p>
+</footer>
+
+<!-- ===== BOTONES FLOTANTES ===== -->
+<a href="https://wa.me/51999999999" target="_blank" class="whatsapp-flotante">💬</a>
+<a href="#" class="boton-subir" id="btnSubir">↑</a>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ===== 1. CURSOR PERSONALIZADO =====
+const cursorDot = document.querySelector('.cursor-dot');
+const cursorRing = document.querySelector('.cursor-ring');
+document.addEventListener('mousemove', (e) => {
+  cursorDot.style.left = e.clientX + 'px';
+  cursorDot.style.top = e.clientY + 'px';
+  setTimeout(() => {
+    cursorRing.style.left = e.clientX + 'px';
+    cursorRing.style.top = e.clientY + 'px';
+  }, 80);
+});
+document.querySelectorAll('a, .valor-card, .contacto-card, .foto').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursorRing.style.transform = 'translate(-50%,-50%) scale(1.8)';
+    cursorRing.style.background = 'rgba(52,211,153,0.15)';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursorRing.style.transform = 'translate(-50%,-50%) scale(1)';
+    cursorRing.style.background = 'transparent';
+  });
+});
+
+// ===== 2. EFECTO MÁQUINA DE ESCRIBIR =====
+const textos = [
+  'Compromiso · Liderazgo · Cambio',
+  'La juventud que transforma',
+  'Un movimiento, una familia',
+  'Construyendo futuro juntos'
+];
+let idxTexto = 0, idxChar = 0, borrando = false;
+const elTexto = document.getElementById('textoAnimado');
+function escribir() {
+  const actual = textos[idxTexto];
+  if (!borrando) {
+    elTexto.textContent = actual.substring(0, idxChar + 1);
+    idxChar++;
+    if (idxChar === actual.length) {
+      borrando = true;
+      setTimeout(escribir, 2000);
+      return;
+    }
+  } else {
+    elTexto.textContent = actual.substring(0, idxChar - 1);
+    idxChar--;
+    if (idxChar === 0) {
+      borrando = false;
+      idxTexto = (idxTexto + 1) % textos.length;
+    }
+  }
+  setTimeout(escribir, borrando ? 40 : 80);
+}
+escribir();
+
+// ===== 3. ANIMACIÓN AL SCROLL =====
+const secciones = document.querySelectorAll('section');
+const observador = new IntersectionObserver((entradas) => {
+  entradas.forEach(entrada => {
+    if (entrada.isIntersecting) entrada.target.classList.add('visible');
+  });
+}, { threshold: 0.15 });
+secciones.forEach(s => observador.observe(s));
+
+// ===== 4. CONTADORES ANIMADOS =====
+const contadores = document.querySelectorAll('.numero');
+const obsCont = new IntersectionObserver((entradas) => {
+  entradas.forEach(entrada => {
+    if (entrada.isIntersecting) {
+      const el = entrada.target;
+      const objetivo = +el.dataset.numero;
+      let actual = 0;
+      const paso = objetivo / 60;
+      const intervalo = setInterval(() => {
+        actual += paso;
+        if (actual >= objetivo) {
+          el.textContent = objetivo;
+          clearInterval(intervalo);
+        } else {
+          el.textContent = Math.floor(actual);
+        }
+      }, 25);
+      obsCont.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+contadores.forEach(c => obsCont.observe(c));
+
+// ===== 5. BOTÓN SUBIR =====
+const btnSubir = document.getElementById('btnSubir');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 400) btnSubir.classList.add('visible');
+  else btnSubir.classList.remove('visible');
+});
+
+// ===== 6. NAV DINÁMICO =====
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 100) {
+    nav.style.background = 'rgba(16,185,129,0.95)';
+    nav.style.boxShadow = '0 4px 40px rgba(110,231,183,0.6)';
+  } else {
+    nav.style.background = 'rgba(2,44,34,0.9)';
+    nav.style.boxShadow = '0 4px 30px rgba(16,185,129,0.3)';
+  }
+});
+
+// ===== 7. EFECTO TILT 3D EN TARJETAS =====
+document.querySelectorAll('.valor-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const rotX = (y - cy) / 15;
+    const rotY = (cx - x) / 15;
+    card.style.transform = `translateY(-15px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.05)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+</script>
+
+</body>
+</html>
