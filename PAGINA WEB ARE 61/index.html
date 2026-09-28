@@ -360,6 +360,37 @@ section ul li strong { color:#10b981; }
 }
 .bloque-destacado p:last-child { margin-bottom: 0; }
 
+/* Cita textual */
+.cita-are {
+  background: linear-gradient(145deg, #f0fdf4, #dcfce7);
+  border-left: 6px solid #059669;
+  border-radius: 15px;
+  padding: 30px 35px;
+  margin: 25px 0;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: #064e3b;
+  position: relative;
+  box-shadow: 0 8px 25px rgba(16,185,129,0.2);
+}
+.cita-are::before {
+  content: """;
+  position: absolute;
+  top: -10px;
+  left: 15px;
+  font-size: 5rem;
+  color: #10b981;
+  font-family: Georgia, serif;
+  line-height: 1;
+  opacity: 0.5;
+}
+.cita-are p { 
+  margin-bottom: 0; 
+  color: #064e3b;
+  font-style: italic;
+  text-align: justify;
+}
+
 /* ===== VALORES ===== */
 .valores {
   display:grid;
@@ -719,6 +750,8 @@ footer p:first-child {
   section ul li { font-size: 0.88rem; }
   .bloque-destacado { padding: 18px 20px; border-left-width: 5px; }
   .bloque-destacado p { font-size: 0.88rem; }
+  .cita-are { padding: 22px 25px; font-size: 0.92rem; border-left-width: 5px; }
+  .cita-are::before { font-size: 3.5rem; left: 10px; }
   nav ul li a { padding: 12px 10px; font-size: 0.7rem; letter-spacing: 0.5px; }
   .contadores { gap: 15px; margin-top: 30px; padding-top: 25px; }
   .contador-item .numero { font-size: 1.9rem; }
@@ -832,7 +865,13 @@ footer p:first-child {
   <div class="bloque-destacado">
     <p>El movimiento <strong>ARE</strong>, nacido en <strong>Loja</strong>, plantea transformar el Estado ecuatoriano bajo el <strong>humanismo cristiano</strong> para lograr <strong>equidad social y territorial</strong>.</p>
   </div>
-  
+
+  <h3 style="color:#059669; font-size:1.4rem; margin:30px 0 15px;">Sobre el centralismo</h3>
+  <div class="cita-are">
+    <p>Romper el centralismo significa que <strong>Loja no tenga que esperar siempre</strong> que las decisiones se tomen en Quito, Guayaquil o Cuenca. Significa fortalecer a Loja para que también pueda <strong>administrar recursos, atraer inversiones, desarrollar proyectos, generar empleo y tener instituciones y servicios de alcance nacional</strong>. No se trata de quitarle oportunidades a otras ciudades, sino de lograr que el desarrollo del Ecuador también se construya desde Loja.</p>
+  </div>
+
+  <h3 style="color:#059669; font-size:1.4rem; margin:30px 0 15px;">Nuestros pilares</h3>
   <ul>
     <li><strong>Romper el centralismo:</strong> dividir el país en <strong>siete regiones autónomas</strong> con descentralización real de recursos y competencias.</li>
     <li><strong>Financiar la demanda ciudadana:</strong> invertir en salud y educación directamente en beneficio del pueblo, y no en la burocracia.</li>
